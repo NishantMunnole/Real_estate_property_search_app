@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* View Image Styling */
+
+.image-wrapper{
+    width: 100%;
+    height: 350px; /* Fixed area */
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+    background: #f8f9fa;
+    border-radius: 10px;
+}
+
+.property-image{
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    object-fit: contain;
+    /*
+        contain -> shows full image
+        cover   -> fills complete area
+    */
+
+    object-position: center;
+}
+
+/* View Image Style Ends */
+
+
+/* Loader */
+
+.loader-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(255,255,255,0.8);
+    z-index: 99999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loader-hidden {
+    display: none !important;
+}
+
+/* Loader Ends */
