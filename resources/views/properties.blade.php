@@ -713,6 +713,8 @@
                 // Property Title
                 if ($('#propertyTitle').val().trim() === '') {
 
+                    $('#global-loader').addClass('loader-hidden');
+
                     showError(
                         '#propertyTitle',
                         'Property title is required'
