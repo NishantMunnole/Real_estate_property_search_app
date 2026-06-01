@@ -579,8 +579,6 @@
 
     <script>        
         function generateDescription(e){
-
-            $('#global-loader').removeClass('loader-hidden');
             
             let isValid = true;
 
