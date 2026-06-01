@@ -17,7 +17,6 @@ class AdminUserSeeder extends Seeder
             [
                 'name' => 'Admin User',
                 'password' => \Illuminate\Support\Facades\Hash::make('Admin@123'), // change to secure password
-                'is_admin' => true, // if you have an is_admin column
             ]
         );
     }
