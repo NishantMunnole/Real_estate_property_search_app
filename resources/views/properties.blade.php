@@ -579,8 +579,6 @@
 
     <script>        
         function generateDescription(e){
-
-            $('#global-loader').removeClass('loader-hidden');
             
             let isValid = true;
 
@@ -702,8 +700,6 @@
                 
                 e.preventDefault();
 
-                $('#global-loader').removeClass('loader-hidden');
-
                 let isValid = true;
 
                 // Remove old errors
@@ -713,7 +709,6 @@
                 // Property Title
                 if ($('#propertyTitle').val().trim() === '') {
 
-                    $('#global-loader').addClass('loader-hidden');
 
                     showError(
                         '#propertyTitle',
@@ -807,7 +802,9 @@
                         },
                         error: function(xhr,status, error){
                             $('#global-loader').addClass('loader-hidden');
-                            console.log(error);
+                            let message = xhr.responseJSON?.message || error || 'Something went wrong';
+
+                            showToast(message, 'danger');
                         }
                     })
                 }
@@ -826,14 +823,16 @@
             });
 
             $('body').on('click', '.view_edit_button', function(e){
+
+                $('#global-loader').removeClass('loader-hidden');
                 // let data = $(this).attr('data-val');
                 let id = $(this).data('id');
                 let title = $(this).data('title');
                 let description = decodeURIComponent($(this).data('description'));
-                let propertyType = $(this).data('propertyType');
+                let propertyType = $(this).data('propertytype');
                 let city = $(this).data('city');
+                let price = $(this).data('price');
                 let image = $(this).attr('data-image');
-
                 // let parsedData = JSON.parse(data);
 
                 $('#property_id').val(id);
@@ -845,17 +844,20 @@
                 $('#edit_city').val(city);
                 $('#edit_image').attr('src', image);
 
-                $('#propertyEditModal').modal('toggle');
+                setTimeout(()=>{
+                    $('#global-loader').addClass('loader-hidden');
+                    $('#propertyEditModal').modal('toggle');
+                },[500]);
             });
 
             $('body').on('click', '.view_property', function(e){
-                console.log('clicked');
+
                 $('#global-loader').removeClass('loader-hidden');
 
                 let id = $(this).data('id');
                 let title = $(this).data('title');
                 let description = decodeURIComponent($(this).data('description'));
-                let propertyType = $(this).data('propertyType');
+                let propertyType = $(this).data('propertytype');
                 let city = $(this).data('city');
                 let image = $(this).attr('data-image');
 
@@ -872,7 +874,7 @@
                 setTimeout(() => {
                     $('#global-loader').addClass('loader-hidden');
                     $('#propertyViewModal').modal('toggle'); 
-                }, 1000);
+                }, 500);
 
             })
 
@@ -957,6 +959,8 @@
                     e.preventDefault();
                 }
                 else{
+                    $('#global-loader').removeClass('loader-hidden');
+                    
                     let formData = new FormData(this);
                     
                     $.ajax({
@@ -970,6 +974,7 @@
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
                         success: function(response) {
+                             $('#global-loader').addClass('loader-hidden');
                             $('#propertyEditModal').modal('toggle');
                             if(response.success){
                                 showToast(response.message, 'success');
@@ -979,7 +984,10 @@
                             }
                         },
                         error: function(xhr,status, error){
-                            console.log(error);
+                            $('#global-loader').addClass('loader-hidden');
+                            let message = xhr.responseJSON?.message || error || 'Something went wrong';
+                            
+                            showToast(message, 'danger');
                         }
                     })
                 }
@@ -1109,7 +1117,8 @@
                             }
                         },
                         error: function(xhr,status, error){
-                            console.log(error);
+                            let message = xhr.responseJSON?.message || "Something went wrong";
+                            showToast(message, 'danger');
                         }
                     })
                 }
