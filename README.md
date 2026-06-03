@@ -259,7 +259,7 @@ C:\xampp\htdocs\Real_estate_property_search_app_feature_first_draft\.env
 - Once installing gemini at the end of .env file get to see "GEMINI_API_KEY=" variable created, Copy the environment variables provided in the email there
 
 ```
-TEST 1 (Environment Variable)
+GEMINI_API_KEY (Environment Variable)
 ```
 
 - Paste the contents into the .env file and save it.
