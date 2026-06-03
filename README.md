@@ -239,18 +239,27 @@ php artisan serve
 
 ### API Key Configuration
 
-Step 1: Configure Environment Variables
+Step 1: Download & Install Gemini
+
+- Open Command Prompt.
+- Navigate to the root project directory:
+
+```
+composer require google-gemini-php/laravel
+```
+
+Step 2: Configure Environment Variables
 
 - Go inside the project root directory:
 
 ```
-C:\xampp\htdocs\Weather-Forcast-feature-first_draft\.env
+C:\xampp\htdocs\Real_estate_property_search_app_feature_first_draft\.env
 ```
 
-- Copy the environment variables provided in the email under:
+- Once installing gemini at the end of .env file get to see "GEMINI_API_KEY=" variable created, Copy the environment variables provided in the email there
 
 ```
-TEST 1 (Environment Variable)
+GEMINI_API_KEY (Environment Variable)
 ```
 
 - Paste the contents into the .env file and save it.
